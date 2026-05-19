@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>임무2</title>
+<title>임무 2</title>
 
 <link rel="stylesheet" href="../css/style.css">
-<script src="../js/script.js"></script>
+
+<style>
+
+.map-box{
+    margin-top:20px;
+}
+
+.map-image{
+    width:100%;
+    border-radius:20px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+textarea{
+    width:100%;
+    height:120px;
+    padding:15px;
+    border-radius:15px;
+    border:1px solid #ccc;
+    font-size:1rem;
+    margin-top:15px;
+}
+
+.camera-box{
+    margin-top:25px;
+}
+
+.camera-btn{
+    background:#34c759;
+    color:white;
+}
+
+.guide{
+    color:#666;
+    margin-top:10px;
+    line-height:1.6;
+    font-size:0.95rem;
+}
+
+</style>
 
 </head>
 
@@ -21,23 +62,76 @@
 
 <div class="question">
 
-관측표준목 상태로 알맞은 것을 골라보세요.
+계절관측목을 관찰해보세요!
 
 </div>
 
-<button onclick="answer(this,true,'mission3.html')">
+<h3>1️⃣ 어떤 꽃 또는 나무인가요?</h3>
 
-꽃이 핌
+<textarea
+placeholder="예: 왕벚나무, 동백나무 등"></textarea>
+
+<h3 style="margin-top:30px;">
+2️⃣ 현재 상태를 촬영해보세요
+</h3>
+
+<div class="camera-box">
+
+<input
+type="file"
+accept="image/*"
+capture="environment"
+style="display:none;"
+id="cameraInput">
+
+<button
+class="camera-btn"
+onclick="document.getElementById('cameraInput').click()">
+
+📷 꽃/잎 상태 촬영하기
 
 </button>
 
-<button onclick="answer(this,false,'mission3.html')">
+<div class="guide">
 
-잎이 없음
+꽃이 피었는지,<br>
+잎이 자랐는지 촬영해보세요!
+
+</div>
+
+</div>
+
+<h3 style="margin-top:35px;">
+3️⃣ 계절관측목 위치 보기
+</h3>
+
+<div class="map-box">
+
+<a href="../images/outdoor/tree-map.jpg" target="_blank">
+
+<img
+src="../images/outdoor/tree-map.jpg"
+class="map-image"
+alt="계절관측목 지도">
+
+</a>
+
+<div class="guide">
+
+지도를 누르면 크게 볼 수 있어요!
+
+</div>
+
+</div>
+
+<button
+class="next-btn"
+style="margin-top:35px;"
+onclick="location.href='mission3.html'">
+
+다음 임무 ▶
 
 </button>
-
-<div class="result"></div>
 
 </div>
 
