@@ -1,274 +1,306 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>제주기상과학홍보관 날씨탐험</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>제주 날씨탐험</title>
 
-    body {
-      margin: 0;
-      font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif;
-      background: #eaf7ff;
-      color: #222;
-      line-height: 1.6;
-    }
+<style>
 
-    header {
-      background: linear-gradient(135deg, #4facfe, #00c6fb);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
+body{
+    margin:0;
+    font-family:'Pretendard', sans-serif;
+    background:#eaf7ff;
+    color:#222;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
+.screen{
+    display:none;
+    min-height:100vh;
+    padding:30px 20px;
+    justify-content:center;
+    align-items:center;
+}
 
-    header p {
-      margin-top: 10px;
-      font-size: 1rem;
-    }
+.active{
+    display:flex;
+}
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 20px;
-    }
+.card{
+    width:100%;
+    max-width:600px;
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    text-align:center;
+}
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    }
+h1{
+    color:#0084ff;
+}
 
-    .question {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.question{
+    font-size:1.4rem;
+    font-weight:bold;
+    margin:30px 0;
+    line-height:1.5;
+}
 
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+button{
+    width:100%;
+    border:none;
+    border-radius:15px;
+    padding:18px;
+    margin:10px 0;
+    font-size:1rem;
+    cursor:pointer;
+    background:#edf4ff;
+    transition:0.2s;
+}
 
-    button {
-      border: none;
-      border-radius: 14px;
-      padding: 15px;
-      font-size: 1rem;
-      cursor: pointer;
-      background: #f0f4ff;
-      transition: 0.2s;
-    }
+button:hover{
+    background:#d8e9ff;
+}
 
-    button:hover {
-      background: #dce8ff;
-      transform: scale(1.02);
-    }
+.result{
+    margin-top:20px;
+    font-size:1.2rem;
+    font-weight:bold;
+}
 
-    .result {
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
+.correct{
+    color:green;
+}
 
-    .correct {
-      color: #0a9b35;
-    }
+.wrong{
+    color:red;
+}
 
-    .wrong {
-      color: #d93025;
-    }
+.next-btn{
+    background:#0084ff;
+    color:white;
+    margin-top:25px;
+}
 
-    .score-box {
-      text-align: center;
-      background: #fff8d6;
-    }
+.next-btn:hover{
+    background:#006fe0;
+}
 
-    .score {
-      font-size: 2rem;
-      margin: 20px 0;
-      color: #ff8c00;
-    }
+.score{
+    font-size:2rem;
+    color:#ff8c00;
+    margin:20px 0;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px 10px;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .emoji {
-      font-size: 1.5rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-
-      .question {
-        font-size: 1.1rem;
-      }
-
-      button {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🌤 제주 날씨탐험</h1>
-    <p>제주기상과학홍보관과 함께하는 신나는 체험!</p>
-  </header>
-
-  <div class="container">
-
-    <!-- 문제 1 -->
+<!-- 시작 화면 -->
+<div class="screen active" id="screen0">
     <div class="card">
-      <div class="question">
-        1️⃣ 한라산 분화구의 이름은 무엇일까요?
-      </div>
+        <h1>🌤 제주 날씨탐험</h1>
 
-      <div class="btn-group">
-        <button onclick="checkAnswer(this, false)">천지</button>
-        <button onclick="checkAnswer(this, true)">백록담</button>
-      </div>
+        <p>
+            제주기상과학홍보관과 함께하는<br>
+            신나는 기상 체험!
+        </p>
 
-      <div class="result"></div>
+        <button onclick="nextScreen(1)">
+            시작하기 ▶
+        </button>
     </div>
+</div>
 
-    <!-- 문제 2 -->
+<!-- 문제1 -->
+<div class="screen" id="screen1">
     <div class="card">
-      <div class="question">
-        2️⃣ 한라산은 죽은 화산이다.
-      </div>
 
-      <div class="btn-group">
-        <button onclick="checkAnswer(this, true)">O</button>
-        <button onclick="checkAnswer(this, false)">X</button>
-      </div>
+        <div class="question">
+            1️⃣ 한라산 분화구의 이름은 무엇일까요?
+        </div>
 
-      <div class="result"></div>
+        <button onclick="answer(this,true,1)">
+            백록담
+        </button>
+
+        <button onclick="answer(this,false,1)">
+            천지
+        </button>
+
+        <div class="result" id="result1"></div>
+
     </div>
+</div>
 
-    <!-- 문제 3 -->
+<!-- 문제2 -->
+<div class="screen" id="screen2">
     <div class="card">
-      <div class="question">
-        3️⃣ 지진이 발생했을 때 엘리베이터를 타고 대피한다.
-      </div>
 
-      <div class="btn-group">
-        <button onclick="checkAnswer(this, false)">O</button>
-        <button onclick="checkAnswer(this, true)">X</button>
-      </div>
+        <div class="question">
+            2️⃣ 한라산은 죽은 화산이다.
+        </div>
 
-      <div class="result"></div>
+        <button onclick="answer(this,true,2)">
+            O
+        </button>
+
+        <button onclick="answer(this,false,2)">
+            X
+        </button>
+
+        <div class="result" id="result2"></div>
+
     </div>
+</div>
 
-    <!-- 문제 4 -->
+<!-- 문제3 -->
+<div class="screen" id="screen3">
     <div class="card">
-      <div class="question">
-        4️⃣ 달무리가 지면 비가 올 가능성이 높다.
-      </div>
 
-      <div class="btn-group">
-        <button onclick="checkAnswer(this, true)">O</button>
-        <button onclick="checkAnswer(this, false)">X</button>
-      </div>
+        <div class="question">
+            3️⃣ 지진이 발생했을 때 엘리베이터를 탄다.
+        </div>
 
-      <div class="result"></div>
+        <button onclick="answer(this,false,3)">
+            O
+        </button>
+
+        <button onclick="answer(this,true,3)">
+            X
+        </button>
+
+        <div class="result" id="result3"></div>
+
     </div>
+</div>
 
-    <!-- 문제 5 -->
+<!-- 문제4 -->
+<div class="screen" id="screen4">
     <div class="card">
-      <div class="question">
-        5️⃣ 토네이도를 보고 옛날 사람들은 무엇이 하늘로 올라간다고 생각했을까요?
-      </div>
 
-      <div class="btn-group">
-        <button onclick="checkAnswer(this, true)">용</button>
-        <button onclick="checkAnswer(this, false)">호랑이</button>
-        <button onclick="checkAnswer(this, false)">독수리</button>
-      </div>
+        <div class="question">
+            4️⃣ 달무리가 지면 비가 올 가능성이 높다.
+        </div>
 
-      <div class="result"></div>
+        <button onclick="answer(this,true,4)">
+            O
+        </button>
+
+        <button onclick="answer(this,false,4)">
+            X
+        </button>
+
+        <div class="result" id="result4"></div>
+
     </div>
+</div>
 
-    <!-- 점수 -->
-    <div class="card score-box">
-      <h2>🎉 체험 완료!</h2>
+<!-- 완료 -->
+<div class="screen" id="screen5">
+    <div class="card">
 
-      <div class="score">
-        점수: <span id="score">0</span> / 5
-      </div>
+        <h1>🎉 체험 완료!</h1>
 
-      <p id="message">
-        문제를 모두 풀어보세요!
-      </p>
+        <div class="score">
+            <span id="finalScore"></span> / 4
+        </div>
+
+        <p id="finalMessage"></p>
+
+        <button onclick="location.reload()">
+            다시하기 🔄
+        </button>
+
     </div>
+</div>
 
-  </div>
+<script>
 
-  <footer>
-    제주기상과학홍보관 🌈<br>
-    다음에 또 놀러오세요!
-  </footer>
+let score = 0;
 
-  <script>
-    let score = 0;
-    let solved = 0;
+function nextScreen(number){
 
-    function checkAnswer(button, isCorrect) {
+    document.querySelectorAll(".screen").forEach(screen=>{
+        screen.classList.remove("active");
+    });
 
-      const card = button.closest(".card");
-      const result = card.querySelector(".result");
+    document.getElementById("screen"+number).classList.add("active");
+}
 
-      if (card.dataset.solved === "true") {
-        return;
-      }
+function answer(button, correct, questionNumber){
 
-      card.dataset.solved = "true";
+    const result = document.getElementById("result"+questionNumber);
 
-      solved++;
+    const buttons = button.parentElement.querySelectorAll("button");
 
-      if (isCorrect) {
+    buttons.forEach(btn=>{
+        btn.disabled = true;
+    });
+
+    if(correct){
+
+        score++;
+
         result.innerHTML = "✅ 정답입니다!";
         result.className = "result correct";
-        score++;
-      } else {
+
+    }else{
+
         result.innerHTML = "❌ 아쉬워요!";
         result.className = "result wrong";
-      }
-
-      document.getElementById("score").innerText = score;
-
-      if (solved === 5) {
-        const message = document.getElementById("message");
-
-        if (score === 5) {
-          message.innerHTML = "🏆 완벽해요! 당신은 날씨박사!";
-        } else if (score >= 3) {
-          message.innerHTML = "🌤 아주 잘했어요!";
-        } else {
-          message.innerHTML = "📚 다시 도전해보세요!";
-        }
-      }
     }
-  </script>
+
+    const nextBtn = document.createElement("button");
+
+    nextBtn.className = "next-btn";
+
+    if(questionNumber < 4){
+
+        nextBtn.innerHTML = "다음 문제 ▶";
+
+        nextBtn.onclick = ()=>{
+            nextScreen(questionNumber + 1);
+        };
+
+    }else{
+
+        nextBtn.innerHTML = "결과 보기 🎉";
+
+        nextBtn.onclick = showResult;
+    }
+
+    button.parentElement.appendChild(nextBtn);
+}
+
+function showResult(){
+
+    nextScreen(5);
+
+    document.getElementById("finalScore").innerText = score;
+
+    let message = "";
+
+    if(score === 4){
+
+        message = "🏆 완벽해요! 당신은 날씨박사!";
+
+    }else if(score >= 2){
+
+        message = "🌤 아주 잘했어요!";
+
+    }else{
+
+        message = "📚 다시 도전해보세요!";
+    }
+
+    document.getElementById("finalMessage").innerText = message;
+}
+
+</script>
 
 </body>
 </html>
