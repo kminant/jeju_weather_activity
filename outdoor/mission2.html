@@ -81,8 +81,9 @@ placeholder="예: 왕벚나무, 동백나무 등"></textarea>
 type="file"
 accept="image/*"
 capture="environment"
+id="cameraInput"
 style="display:none;"
-id="cameraInput">
+onchange="previewImage(event)">
 
 <button
 class="camera-btn"
@@ -98,6 +99,30 @@ onclick="document.getElementById('cameraInput').click()">
 잎이 자랐는지 촬영해보세요!
 
 </div>
+
+<img
+id="preview"
+style="
+display:none;
+width:100%;
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+">
+
+<button
+id="retryBtn"
+class="camera-btn"
+style="
+display:none;
+margin-top:15px;
+background:#ff9500;
+"
+onclick="document.getElementById('cameraInput').click()">
+
+🔄 다시 촬영하기
+
+</button>
 
 </div>
 
