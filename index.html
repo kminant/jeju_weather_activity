@@ -3,9 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>제주 날씨탐험</title>
+
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.choice-btn{
+    padding:25px;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+.indoor{
+    background:#4da6ff;
+    color:white;
+}
+
+.outdoor{
+    background:#34c759;
+    color:white;
+}
+
+.subtitle{
+    margin-top:20px;
+    line-height:1.8;
+    color:#555;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <div class="container">
@@ -13,18 +43,28 @@
 <div class="card">
 
 <h1>
-🌤 기상이와 함께 떠나는<br>
-제주 날씨탐험
+🌤 제주기상과학홍보관<br>
+날씨탐험
 </h1>
 
-<p>
-제주기상과학홍보관과 함께하는<br>
-신나는 기상 체험 활동!
+<p class="subtitle">
+체험할 활동지를 선택해주세요!
 </p>
 
-<button class="next-btn"
-onclick="location.href='history.html'">
-시작하기 ▶
+<button
+class="choice-btn indoor"
+onclick="location.href='indoor/history.html'">
+
+🏢 실내 활동지 체험
+
+</button>
+
+<button
+class="choice-btn outdoor"
+onclick="location.href='outdoor/intro.html'">
+
+🌳 실외 활동지 체험
+
 </button>
 
 </div>
