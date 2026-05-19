@@ -25,6 +25,20 @@
 
 </div>
 
+<h3 style="margin-top:30px;">
+📸 내가 관찰한 계절관측목
+</h3>
+
+<img
+id="savedPhoto"
+style="
+display:none;
+width:100%;
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+">
+  
 <p>
 
 제주지방기상청의 역사와<br>
@@ -44,5 +58,22 @@ onclick="location.href='../index.html'">
 
 </div>
 
+<script>
+
+const savedPhoto =
+localStorage.getItem('seasonTreePhoto');
+
+if(savedPhoto){
+
+    const img =
+    document.getElementById('savedPhoto');
+
+    img.src = savedPhoto;
+
+    img.style.display = 'block';
+}
+
+</script>
+  
 </body>
 </html>
