@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>실외 활동지</title>
+<title>임무1</title>
 
 <link rel="stylesheet" href="../css/style.css">
 <script src="../js/script.js"></script>
@@ -17,26 +17,27 @@
 
 <div class="card">
 
-<h1>
-🕵️ 기상과학 수사대
-</h1>
+<h1>🔎 임무 1</h1>
 
 <div class="question">
 
-100년의 비밀을 조사하라!<br><br>
-
-총 4개의 현장을 방문하여<br>
-임무를 해결해보세요!
+제주지방기상청이 처음 문을 열었을 때의 이름은 무엇일까요?
 
 </div>
 
-<button
-class="next-btn"
-onclick="location.href='mission1.html'">
+<button onclick="answer(this,true,'mission2.html')">
 
-탐험 시작 ▶
+제주측후소
 
 </button>
+
+<button onclick="answer(this,false,'mission2.html')">
+
+제주기상대
+
+</button>
+
+<div class="result"></div>
 
 </div>
 
